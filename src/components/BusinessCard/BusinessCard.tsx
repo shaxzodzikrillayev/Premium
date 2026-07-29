@@ -1,5 +1,48 @@
-
 import "./BusinessCard.scss";
+
+import {
+  Phone,
+  ArrowUpRight,
+  Send,
+} from "lucide-react";
+
+const InstagramIcon = () => {
+  return (
+    <svg
+      width="19"
+      height="19"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <rect
+        x="3"
+        y="3"
+        width="18"
+        height="18"
+        rx="5"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+
+      <circle
+        cx="12"
+        cy="12"
+        r="4"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+
+      <circle
+        cx="17.5"
+        cy="6.5"
+        r="1"
+        fill="currentColor"
+      />
+    </svg>
+  );
+};
 
 const BusinessCard = () => {
   return (
@@ -78,7 +121,10 @@ const BusinessCard = () => {
             className="contact"
           >
             <div className="contact__icon">
-              <span>⌕</span>
+              <Phone
+                size={19}
+                strokeWidth={1.5}
+              />
             </div>
 
             <div className="contact__info">
@@ -87,7 +133,10 @@ const BusinessCard = () => {
             </div>
 
             <div className="contact__arrow">
-              ↗
+              <ArrowUpRight
+                size={17}
+                strokeWidth={1.5}
+              />
             </div>
           </a>
 
@@ -100,7 +149,7 @@ const BusinessCard = () => {
             className="contact"
           >
             <div className="contact__icon">
-              ◎
+              <InstagramIcon />
             </div>
 
             <div className="contact__info">
@@ -109,7 +158,10 @@ const BusinessCard = () => {
             </div>
 
             <div className="contact__arrow">
-              ↗
+              <ArrowUpRight
+                size={17}
+                strokeWidth={1.5}
+              />
             </div>
           </a>
 
@@ -122,7 +174,10 @@ const BusinessCard = () => {
             className="contact"
           >
             <div className="contact__icon">
-              ✈
+              <Send
+                size={19}
+                strokeWidth={1.5}
+              />
             </div>
 
             <div className="contact__info">
@@ -131,7 +186,10 @@ const BusinessCard = () => {
             </div>
 
             <div className="contact__arrow">
-              ↗
+              <ArrowUpRight
+                size={17}
+                strokeWidth={1.5}
+              />
             </div>
           </a>
 
@@ -144,7 +202,10 @@ const BusinessCard = () => {
             className="contact contact--featured"
           >
             <div className="contact__icon">
-              ↗
+              <ArrowUpRight
+                size={19}
+                strokeWidth={1.5}
+              />
             </div>
 
             <div className="contact__info">
@@ -153,7 +214,10 @@ const BusinessCard = () => {
             </div>
 
             <div className="contact__arrow">
-              →
+              <ArrowUpRight
+                size={17}
+                strokeWidth={1.5}
+              />
             </div>
           </a>
 
@@ -177,4 +241,3 @@ const BusinessCard = () => {
 };
 
 export default BusinessCard;
-
