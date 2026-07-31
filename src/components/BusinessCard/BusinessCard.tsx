@@ -1,78 +1,69 @@
-import { useEffect, useState } from "react";
-import { ArrowUpRight, Send } from "lucide-react";
+import { useState } from "react";
 
 import "./BusinessCard.scss";
 
-import ContactModal from "./ContactModal";
-import LanguageSwitcher from "./LanguageSwitcher";
+import { ArrowUpRight, Send } from "lucide-react";
 
-export type Language = "RU" | "EN" | "UZ";
+import ContactsModal from "./ContactsModal";
 
-const translations = {
-  RU: {
-    mini: "ПРЕМИАЛЬНАЯ ВИЗИТКА",
-    eyebrow: "ИСКУССТВО СТИЛЯ",
-    subtitle: "ЛЮКСОВАЯ БИЗНЕС ВИЗИТКА",
+const InstagramIcon = () => (
+  <svg
+    width="19"
+    height="19"
+    viewBox="0 0 24 24"
+    fill="none"
+    aria-hidden="true"
+  >
+    <rect
+      x="3"
+      y="3"
+      width="18"
+      height="18"
+      rx="5"
+      stroke="currentColor"
+      strokeWidth="1.6"
+    />
 
-    telegram: "ТЕЛЕГРАМ КАНАЛ",
-    instagram: "ИНСТАГРАМ",
-    contact: "КОНТАКТЫ",
-  },
+    <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.6" />
 
-  EN: {
-    mini: "PREMIUM BUSINESS CARD",
-    eyebrow: "THE ART OF STYLE",
-    subtitle: "LUXURY BUSINESS CARD",
+    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+  </svg>
+);
 
-    telegram: "TELEGRAM CHANNEL",
-    instagram: "INSTAGRAM",
-    contact: "CONTACTS",
-  },
-
-  UZ: {
-    mini: "PREMIUM VIZITKA",
-    eyebrow: "USLUB SAN'ATI",
-    subtitle: "LUXURY BIZNES VIZITKA",
-
-    telegram: "TELEGRAM KANAL",
-    instagram: "INSTAGRAM",
-    contact: "ALOQA",
-  },
+type Contact = {
+  title: string;
+  value: string;
+  href: string;
+  icon: React.ReactNode;
+  external?: boolean;
+  featured?: boolean;
 };
 
-export default function BusinessCard() {
-  const [language, setLanguage] = useState<Language>(() => {
-    const saved = localStorage.getItem("magnat-language");
+const contacts: Contact[] = [
 
-    if (saved === "RU" || saved === "EN" || saved === "UZ") {
-      return saved;
-    }
+{
+    title: "INSTAGRAM",
+    value: "@magnat_premium",
+    href: "https://www.instagram.com/magnat_.premium",
+    external: true,
+    icon: <InstagramIcon />,
+  },
 
-    return "RU";
-  });
+  {
+    title: "НАШ TELEGRAM",
+    value: "@Magnnat&premium",
+    href: "https://t.me/magnnatpremium",
+    external: true,
+    icon: <Send size={19} strokeWidth={1.5} />,
+  },
 
-  const [modal, setModal] = useState(false);
+];
 
-  const [closing, setClosing] = useState(false);
-
-  useEffect(() => {
-    localStorage.setItem("magnat-language", language);
-  }, [language]);
-
-  const closeModal = () => {
-    setClosing(true);
-
-    setTimeout(() => {
-      setModal(false);
-
-      setClosing(false);
-    }, 400);
-  };
-
-  const t = translations[language];
+const BusinessCard = () => {
+  const [contactsOpen, setContactsOpen] = useState(false);
 
   return (
-    <section className="business-card">
+    <main className="business-card">
       <div className="business-card__background">
         <span className="orb orb--one" />
 
@@ -85,26 +76,24 @@ export default function BusinessCard() {
         <div className="noise" />
       </div>
 
-      <LanguageSwitcher language={language} changeLanguage={setLanguage} />
-
       <div className="business-card__content">
-        <header className="business-card__top">
+        <div className="business-card__top">
           <div className="business-card__logo">
             <span>M</span>
           </div>
 
-          <p className="business-card__mini">{t.mini}</p>
-        </header>
+          <div className="business-card__mini">EST. 2026</div>
+        </div>
 
         <section className="business-card__hero">
-          <span className="business-card__eyebrow">{t.eyebrow}</span>
+          <span className="business-card__eyebrow">THE ART OF STYLE</span>
 
           <h1 className="business-card__brand">
             MAGNAT
             <span>PREMIUM</span>
           </h1>
 
-          <p className="business-card__subtitle">{t.subtitle}</p>
+          <p className="business-card__subtitle">PREMIUM COLLECTION</p>
         </section>
 
         <div className="business-card__line">
@@ -112,67 +101,48 @@ export default function BusinessCard() {
         </div>
 
         <div className="business-card__contacts">
-          <a
-            href="https://t.me/magnnatpremium"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact"
-          >
-            <div className="contact__icon">
-              <Send size={20} />
-            </div>
+          {contacts.map((item) => (
+            <a
+              key={item.title}
+              href={item.href}
+              className={`contact ${item.featured ? "contact--featured" : ""}`}
+              target={item.external ? "_blank" : undefined}
+              rel={item.external ? "noopener noreferrer" : undefined}
+            >
+              <div className="contact__icon">{item.icon}</div>
 
-            <div className="contact__info">
-              <small>{t.telegram}</small>
+              <div className="contact__info">
+                <small>{item.title}</small>
 
-              <strong>Magnat&premium</strong>
-            </div>
+                <strong>{item.value}</strong>
+              </div>
 
-            <ArrowUpRight size={18} />
-          </a>
-
-          <a
-            href="https://instagram.com/magnat_.premium"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact"
-          >
-            <div className="contact__icon">
-              <img
-                className="instagram-icon"
-                src="/instagram.svg"
-                alt="Instagram"
-              />
-            </div>
-
-            <div className="contact__info">
-              <small>{t.instagram}</small>
-
-              <strong>@magnat_.premium</strong>
-            </div>
-
-            <ArrowUpRight size={18} />
-          </a>
-
-          <button className="contact-button" onClick={() => setModal(true)}>
-            {t.contact}
-          </button>
+              <div className="contact__arrow">
+                <ArrowUpRight size={17} strokeWidth={1.5} />
+              </div>
+            </a>
+          ))}
         </div>
+
+        <button
+          className="business-card__contacts-button"
+          onClick={() => setContactsOpen(true)}
+        >
+          CONTACTS
+        </button>
 
         <footer className="business-card__footer">
           <span>MAGNAT PREMIUM</span>
+
+          <span className="business-card__footer-line" />
 
           <span>2026</span>
         </footer>
       </div>
 
-      {modal && (
-        <ContactModal
-          close={closeModal}
-          closing={closing}
-          language={language}
-        />
-      )}
-    </section>
+      {contactsOpen && <ContactsModal onClose={() => setContactsOpen(false)} />}
+    </main>
   );
-}
+};
+
+export default BusinessCard;

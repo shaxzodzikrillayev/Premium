@@ -1,52 +1,62 @@
 import { useEffect, useState } from "react";
 import "./Preloader.scss";
 
-interface Props {
-  finish: () => void;
-}
-
-export default function Preloader({ finish }: Props) {
-  const [hide, setHide] = useState(false);
+const Preloader = () => {
+  const [hidden, setHidden] = useState(false);
+  const [removed, setRemoved] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setHide(true);
-
-      setTimeout(() => {
-        finish();
-      }, 1500);
+    // Через 3.2 секунды начинаем плавное исчезновение
+    const hideTimer = setTimeout(() => {
+      setHidden(true);
     }, 3200);
 
-    return () => clearTimeout(timer);
-  }, [finish]);
+    // Полностью удаляем после анимации исчезновения
+    const removeTimer = setTimeout(() => {
+      setRemoved(true);
+    }, 4700);
+
+    return () => {
+      clearTimeout(hideTimer);
+
+      clearTimeout(removeTimer);
+    };
+  }, []);
+
+  if (removed) {
+    return null;
+  }
 
   return (
-    <div className={`preloader ${hide ? "preloader--hidden" : ""}`}>
-      <div className="explosion">
-        {Array.from({ length: 40 }).map((_, i) => (
-          <span key={i}></span>
-        ))}
+    <div
+      className={`
+        preloader
+        ${hidden ? "preloader--hidden" : ""}
+      `}
+    >
+      {/* Светящийся фон */}
+
+      <div className="preloader__glow" />
+
+      {/* Логотип */}
+
+      <div className="preloader__logo">M</div>
+
+      {/* Название */}
+
+      <div className="preloader__brand">MAGNAT</div>
+
+      {/* Подзаголовок */}
+
+      <div className="preloader__subtitle">PREMIUM COLLECTION</div>
+
+      {/* Линия загрузки */}
+
+      <div className="preloader__line">
+        <span />
       </div>
-
-      <div className="particles">
-        {Array.from({ length: 35 }).map((_, i) => (
-          <span key={i}></span>
-        ))}
-      </div>
-
-      <div className="logo-animation">
-        <div className="circle"></div>
-
-        <div className="letter">M</div>
-      </div>
-
-      <div className="brand">
-        <h1>MAGNAT</h1>
-
-        <span>PREMIUM</span>
-      </div>
-
-      <div className="gold-line"></div>
     </div>
   );
-}
+};
+
+export default Preloader;
