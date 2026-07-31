@@ -1,11 +1,10 @@
-import { useState } from "react";
 import { Phone, Send, X } from "lucide-react";
 import "./ContactModal.scss";
-
-type Language = "RU" | "EN" | "UZ";
+import type { Language } from "./BusinessCard";
 
 interface Props {
   close: () => void;
+  closing: boolean;
   language: Language;
 }
 
@@ -62,32 +61,21 @@ const contacts = [
   },
 ];
 
-export default function ContactModal({ close, language }: Props) {
-  const [closing, setClosing] = useState(false);
-
+export default function ContactModal({ close, closing, language }: Props) {
   const t = translations[language];
-
-  const handleClose = () => {
-    setClosing(true);
-
-    setTimeout(() => {
-      close();
-    }, 400);
-  };
 
   return (
     <div
       className={`contact-modal ${closing ? "closing" : ""}`}
-      onClick={handleClose}
+      onClick={close}
     >
       <div className="contact-modal__box" onClick={(e) => e.stopPropagation()}>
-        <button className="contact-modal__close" onClick={handleClose}>
+        <button className="contact-modal__close" onClick={close}>
           <X size={22} />
         </button>
 
         <div className="contact-modal__title">
           <span>MAGNAT</span>
-
           <h2>{t.title}</h2>
         </div>
 
