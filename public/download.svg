@@ -1,0 +1,101 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+
+  <linearGradient id="luxuryGold" x1="0" y1="0" x2="512" y2="512">
+    <stop stop-color="#FFF6C7"></stop>
+    <stop offset="0.25" stop-color="#E7C66A"></stop>
+    <stop offset="0.55" stop-color="#B8862F"></stop>
+    <stop offset="0.8" stop-color="#F5D982"></stop>
+    <stop offset="1" stop-color="#FFF0A3"></stop>
+  </linearGradient>
+
+
+  <radialGradient id="bgGlow">
+    <stop stop-color="#D4AF37" stop-opacity=".35"></stop>
+    <stop offset="1" stop-color="#000" stop-opacity="0"></stop>
+  </radialGradient>
+
+
+  <filter id="shadow">
+    <feGaussianBlur stdDeviation="10"></feGaussianBlur>
+  </filter>
+
+</defs>
+
+
+<!-- luxury glow -->
+
+<circle cx="256" cy="256" r="210" fill="url(#bgGlow)"></circle>
+
+
+<!-- outer gold ring -->
+
+<circle cx="256" cy="256" r="190" stroke="url(#luxuryGold)" stroke-width="6"></circle>
+
+
+<!-- thin inner ring -->
+
+<circle cx="256" cy="256" r="165" stroke="#D4AF37" stroke-opacity=".35" stroke-width="2"></circle>
+
+
+<!-- top diamond -->
+
+<path d="
+M256 75
+L270 92
+L256 109
+L242 92Z
+" fill="url(#luxuryGold)"></path>
+
+
+
+<!-- MAGNAT M -->
+
+<path d="
+M145 340
+V175
+C145 165 158 160 165 168
+L256 260
+L347 168
+C354 160 367 165 367 175
+V340
+" stroke="url(#luxuryGold)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"></path>
+
+
+
+<!-- premium underline -->
+
+<path d="
+M170 390
+H342
+" stroke="url(#luxuryGold)" stroke-width="5"></path>
+
+
+<!-- side diamonds -->
+
+<path d="
+M150 390
+L158 382
+L166 390
+L158 398Z
+" fill="#FFF1AA"></path>
+
+
+<path d="
+M346 390
+L354 382
+L362 390
+L354 398Z
+" fill="#FFF1AA"></path>
+
+
+
+<!-- small text -->
+
+<text x="256" y="425" text-anchor="middle" fill="#D4AF37" font-size="22" font-family="Georgia, serif" letter-spacing="8">
+PREMIUM
+</text>
+
+
+</svg>

@@ -1,58 +1,52 @@
 import { useEffect, useState } from "react";
 import "./Preloader.scss";
 
-const Preloader = () => {
-  const [hidden, setHidden] = useState(false);
-  const [removed, setRemoved] = useState(false);
+interface Props {
+  finish: () => void;
+}
+
+export default function Preloader({ finish }: Props) {
+  const [hide, setHide] = useState(false);
 
   useEffect(() => {
-    // Прелоадер показывается 3.2 секунды
-    const hideTimer = setTimeout(() => {
-      setHidden(true);
+    const timer = setTimeout(() => {
+      setHide(true);
+
+      setTimeout(() => {
+        finish();
+      }, 1500);
     }, 3200);
 
-    // Через 1.4 секунды после начала исчезновения
-    // полностью удаляем прелоадер
-    const removeTimer = setTimeout(() => {
-      setRemoved(true);
-    }, 4600);
-
-    return () => {
-      clearTimeout(hideTimer);
-      clearTimeout(removeTimer);
-    };
-  }, []);
-
-  if (removed) {
-    return null;
-  }
+    return () => clearTimeout(timer);
+  }, [finish]);
 
   return (
-    <div
-      className={`preloader ${
-        hidden ? "preloader--hidden" : ""
-      }`}
-    >
-      <div className="preloader__glow" />
-
-      <div className="preloader__logo">
-        M
+    <div className={`preloader ${hide ? "preloader--hidden" : ""}`}>
+      <div className="explosion">
+        {Array.from({ length: 40 }).map((_, i) => (
+          <span key={i}></span>
+        ))}
       </div>
 
-      <div className="preloader__brand">
-        MAGNAT
+      <div className="particles">
+        {Array.from({ length: 35 }).map((_, i) => (
+          <span key={i}></span>
+        ))}
       </div>
 
-      <div className="preloader__subtitle">
-        PREMIUM COLLECTION
+      <div className="logo-animation">
+        <div className="circle"></div>
+
+        <div className="letter">M</div>
       </div>
 
-      <div className="preloader__line">
-        <span />
+      <div className="brand">
+        <h1>MAGNAT</h1>
+
+        <span>PREMIUM</span>
       </div>
+
+      <div className="gold-line"></div>
     </div>
   );
-};
-
-export default Preloader;
-
+}
