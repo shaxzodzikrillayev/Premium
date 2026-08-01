@@ -5,19 +5,30 @@ import "./App.scss";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [hidePreloader, setHidePreloader] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2200);
+    // Через 3 секунды запускаем исчезновение
+    const hideTimer = setTimeout(() => {
+      setHidePreloader(true);
+    }, 3000);
 
-    return () => clearTimeout(timer);
+    // После окончания анимации убираем прелоадер
+    const removeTimer = setTimeout(() => {
+      setLoading(false);
+    }, 4200); // 3000 + 1200ms анимации
+
+    return () => {
+      clearTimeout(hideTimer);
+      clearTimeout(removeTimer);
+    };
   }, []);
 
   return (
     <>
-      {loading && <Preloader />}
       <BusinessCard />
+
+      {loading && <Preloader hidden={hidePreloader} />}
     </>
   );
 }

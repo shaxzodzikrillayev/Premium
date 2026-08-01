@@ -44,10 +44,10 @@
   filter: blur(0);
 
   transition:
-    opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1.5s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 1.5s ease,
-    visibility 0s linear 0s;
+    opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1.2s ease,
+    visibility 0s linear;
 
   /* ===================================================
      HIDDEN
@@ -56,19 +56,29 @@
   &--hidden {
     opacity: 0;
 
-    transform: scale(1.08);
+    transform: scale(1.02);
 
-    filter: blur(18px);
-
-    pointer-events: none;
+    filter: blur(6px);
 
     visibility: hidden;
+    pointer-events: none;
 
     transition:
-      opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 1.5s cubic-bezier(0.16, 1, 0.3, 1),
-      filter 1.5s ease,
-      visibility 0s linear 1.5s;
+      opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 1.2s ease,
+      visibility 0s linear 1.2s;
+
+    .preloader__logo,
+    .preloader__brand,
+    .preloader__subtitle,
+    .preloader__line {
+      opacity: 0;
+      transform: translateY(-8px);
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+    }
 
     .preloader__logo {
       opacity: 0;
