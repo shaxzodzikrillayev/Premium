@@ -11,7 +11,7 @@ function App() {
     // Через 3 секунды запускаем исчезновение
     const hideTimer = setTimeout(() => {
       setHidePreloader(true);
-    }, 3000);
+    }, 2200);
 
     // После окончания анимации убираем прелоадер
     const removeTimer = setTimeout(() => {
