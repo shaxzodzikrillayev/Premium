@@ -1,0 +1,306 @@
+.contacts-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(18px);
+
+    animation: overlayShow 0.5s ease forwards;
+  }
+
+  &__card {
+    position: relative;
+
+    width: 100%;
+    max-width: 420px;
+
+    padding: 35px 28px;
+
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.02)
+    );
+
+    border: 1px solid rgba(225, 190, 105, 0.25);
+
+    backdrop-filter: blur(35px);
+
+    box-shadow:
+      0 50px 120px rgba(0, 0, 0, 0.8),
+      0 0 80px rgba(220, 174, 69, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+    overflow: hidden;
+
+    animation: modalShow 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 10%;
+      width: 80%;
+      height: 1px;
+
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #fff1b0,
+        #dcb868,
+        transparent
+      );
+
+      box-shadow: 0 0 20px rgba(220, 174, 69, 0.5);
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+
+    color: #fff;
+
+    cursor: pointer;
+
+    transition: 0.35s;
+
+    &:hover {
+      color: #e8c878;
+      transform: rotate(90deg) scale(1.08);
+      border-color: rgba(224, 188, 99, 0.5);
+    }
+  }
+
+  &__label {
+    display: block;
+    text-align: center;
+
+    font-size: 8px;
+    letter-spacing: 6px;
+
+    color: #dcb868;
+
+    margin-bottom: 18px;
+  }
+
+  h2 {
+    margin: 0;
+    text-align: center;
+
+    font-family: Didot, Georgia, serif;
+    font-size: 42px;
+    font-weight: 400;
+
+    letter-spacing: 5px;
+    color: #fff;
+
+    span {
+      display: block;
+      margin-top: 8px;
+
+      font-family: Inter, Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 10px;
+
+      color: #dfc078;
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    margin-top: 35px;
+  }
+
+  a {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    min-height: 65px;
+    padding: 14px;
+
+    color: #fff;
+    text-decoration: none;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.015)
+    );
+
+    overflow: hidden;
+
+    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background: linear-gradient(
+        110deg,
+        transparent,
+        rgba(230, 190, 90, 0.15),
+        transparent
+      );
+
+      transform: translateX(-120%);
+      transition: 0.7s;
+    }
+
+    svg {
+      position: relative;
+      z-index: 2;
+
+      width: 22px;
+      color: #dfc078;
+
+      transition: 0.35s;
+    }
+
+    div {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    small {
+      font-size: 7px;
+      letter-spacing: 3px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    strong {
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+
+      border-color: rgba(224, 188, 99, 0.45);
+
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.45),
+        0 0 30px rgba(220, 174, 69, 0.08);
+
+      &::before {
+        transform: translateX(120%);
+      }
+
+      svg {
+        transform: scale(1.15);
+        color: #fff1b0;
+      }
+    }
+  }
+
+  /* ---------- Закрытие ---------- */
+
+  &--closing {
+    .contacts-modal__overlay {
+      animation: overlayHide 0.6s ease forwards;
+    }
+
+    .contacts-modal__card {
+      animation: modalHide 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  }
+}
+
+/* ------------------------ */
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlayHide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modalShow {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.92);
+    filter: blur(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes modalHide {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(40px) scale(0.94);
+    filter: blur(10px);
+  }
+}
+
+@media (max-width: 480px) {
+  .contacts-modal {
+    &__card {
+      padding: 30px 18px;
+    }
+
+    h2 {
+      font-size: 34px;
+    }
+
+    a {
+      min-height: 60px;
+    }
+  }
+}
