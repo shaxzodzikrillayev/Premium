@@ -63,26 +63,38 @@ const ContactsModal = ({ onClose }: Props) => {
             </div>
           </a>
 
-          <a href="https://t.me/@Alimov010" target="_blank" rel="noreferrer">
+          <a
+            href="https://t.me/Alimov010"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <ArrowUpRight size={20} />
             <div>
-              <small>ЛИЧНАЯ СВЯЗЬ</small>
+              <small>TELEGRAM</small>
               <strong>@Alimov010</strong>
             </div>
           </a>
 
-          <a href="https://t.me/akbarovvx" target="_blank" rel="noreferrer">
+          <a
+            href="https://t.me/akbarovvx"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <ArrowUpRight size={20} />
             <div>
-              <small>ЛИЧНАЯ СВЯЗЬ</small>
+              <small>TELEGRAM</small>
               <strong>@akbarovvx</strong>
             </div>
           </a>
-          
-          <a href="https://t.me/@Alimov4422" target="_blank" rel="noreferrer">
+
+          <a
+            href="https://t.me/Alimov4422"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <ArrowUpRight size={20} />
             <div>
-              <small>ЛИЧНАЯ СВЯЗЬ</small>
+              <small>TELEGRAM</small>
               <strong>@Alimov4422</strong>
             </div>
           </a>
