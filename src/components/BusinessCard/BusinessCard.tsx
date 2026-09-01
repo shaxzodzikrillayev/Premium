@@ -40,11 +40,10 @@ type Contact = {
 };
 
 const contacts: Contact[] = [
-
-{
+  {
     title: "INSTAGRAM",
     value: "@magnat_premium",
-    href: "https://www.instagram.com/magnat_.premium",
+    href: "https://www.instagram.com/magnatpremium.uz/",
     external: true,
     icon: <InstagramIcon />,
   },
@@ -56,7 +55,6 @@ const contacts: Contact[] = [
     external: true,
     icon: <Send size={19} strokeWidth={1.5} />,
   },
-
 ];
 
 const BusinessCard = () => {
