@@ -1,9 +1,7 @@
-import { useState } from "react";
-
+import { useState, type ReactNode } from "react";
 import "./BusinessCard.scss";
 
 import { ArrowUpRight, Send } from "lucide-react";
-
 import ContactsModal from "./ContactsModal";
 
 const InstagramIcon = () => (
@@ -12,6 +10,7 @@ const InstagramIcon = () => (
     height="19"
     viewBox="0 0 24 24"
     fill="none"
+    xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
   >
     <rect
@@ -34,7 +33,7 @@ type Contact = {
   title: string;
   value: string;
   href: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   external?: boolean;
   featured?: boolean;
 };
@@ -42,15 +41,15 @@ type Contact = {
 const contacts: Contact[] = [
   {
     title: "INSTAGRAM",
-    value: "@magnat_premium",
+    value: "@magnatpremium.uz",
     href: "https://www.instagram.com/magnatpremium.uz/",
     external: true,
+    featured: true,
     icon: <InstagramIcon />,
   },
-
   {
     title: "НАШ TELEGRAM",
-    value: "@Magnnat&premium",
+    value: "Magnat&premium",
     href: "https://t.me/magnnatpremium",
     external: true,
     icon: <Send size={19} strokeWidth={1.5} />,
@@ -60,28 +59,55 @@ const contacts: Contact[] = [
 const BusinessCard = () => {
   const [contactsOpen, setContactsOpen] = useState(false);
 
+  const openContacts = () => {
+    setContactsOpen(true);
+  };
+
+  const closeContacts = () => {
+    setContactsOpen(false);
+  };
+
   return (
     <main className="business-card">
-      <div className="business-card__background">
+      {/* ================================================
+          BACKGROUND
+      ================================================= */}
+
+      <div className="business-card__background" aria-hidden="true">
         <span className="orb orb--one" />
-
         <span className="orb orb--two" />
-
         <span className="orb orb--three" />
 
         <div className="grid" />
-
         <div className="noise" />
       </div>
 
+      {/* ================================================
+          GLASS CARD
+      ================================================= */}
+
       <div className="business-card__content">
+        {/* ==============================================
+            TOP / LOGO
+        =============================================== */}
+
         <div className="business-card__top">
           <div className="business-card__logo">
-            <span>M</span>
+            <div className="business-card__logo-frame">
+              <img
+                src="/download.svg"
+                alt="Magnat Premium"
+                className="business-card__logo-image"
+              />
+            </div>
           </div>
 
-          <div className="business-card__mini">EST. 2026</div>
+          <div className="business-card__mini">EST. 2014</div>
         </div>
+
+        {/* ==============================================
+            HERO
+        =============================================== */}
 
         <section className="business-card__hero">
           <span className="business-card__eyebrow">THE ART OF STYLE</span>
@@ -94,9 +120,17 @@ const BusinessCard = () => {
           <p className="business-card__subtitle">PREMIUM COLLECTION</p>
         </section>
 
-        <div className="business-card__line">
+        {/* ==============================================
+            GOLD DIVIDER
+        =============================================== */}
+
+        <div className="business-card__line" aria-hidden="true">
           <span />
         </div>
+
+        {/* ==============================================
+            CONTACTS
+        =============================================== */}
 
         <div className="business-card__contacts">
           {contacts.map((item) => (
@@ -106,12 +140,12 @@ const BusinessCard = () => {
               className={`contact ${item.featured ? "contact--featured" : ""}`}
               target={item.external ? "_blank" : undefined}
               rel={item.external ? "noopener noreferrer" : undefined}
+              aria-label={`${item.title}: ${item.value}`}
             >
               <div className="contact__icon">{item.icon}</div>
 
               <div className="contact__info">
                 <small>{item.title}</small>
-
                 <strong>{item.value}</strong>
               </div>
 
@@ -122,23 +156,36 @@ const BusinessCard = () => {
           ))}
         </div>
 
+        {/* ==============================================
+            CONTACT BUTTON
+        =============================================== */}
+
         <button
+          type="button"
           className="business-card__contacts-button"
-          onClick={() => setContactsOpen(true)}
+          onClick={openContacts}
         >
           CONTACTS
         </button>
 
+        {/* ==============================================
+            FOOTER
+        =============================================== */}
+
         <footer className="business-card__footer">
           <span>MAGNAT PREMIUM</span>
 
-          <span className="business-card__footer-line" />
+          <span className="business-card__footer-line" aria-hidden="true" />
 
           <span>2026</span>
         </footer>
       </div>
 
-      {contactsOpen && <ContactsModal onClose={() => setContactsOpen(false)} />}
+      {/* ================================================
+          CONTACT MODAL
+      ================================================= */}
+
+      {contactsOpen && <ContactsModal onClose={closeContacts} />}
     </main>
   );
 };

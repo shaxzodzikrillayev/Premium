@@ -1389,3 +1389,201 @@
     box-shadow: 0 15px 40px rgba(220, 174, 69, 0.15);
   }
 }
+
+/* =====================================================
+   MAGNAT PREMIUM — PREMIUM SVG LOGO
+===================================================== */
+
+.business-card__logo {
+  position: relative;
+
+  width: 118px;
+  height: 118px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(225, 191, 106, 0.55);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(240, 207, 125, 0.16),
+      rgba(255, 255, 255, 0.025) 55%,
+      rgba(0, 0, 0, 0.35) 100%
+    );
+
+  box-shadow:
+    0 0 0 6px rgba(225, 191, 106, 0.025),
+    0 0 45px rgba(218, 172, 66, 0.14),
+    inset 0 0 35px rgba(220, 174, 69, 0.055);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+
+  /* Outer ring */
+  &::before {
+    content: "";
+
+    position: absolute;
+    inset: 8px;
+
+    border: 1px solid rgba(225, 190, 105, 0.22);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+  }
+
+  /* Golden light */
+  &::after {
+    content: "";
+
+    position: absolute;
+
+    top: -100%;
+    left: -80%;
+
+    width: 45%;
+    height: 300%;
+
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 241, 188, 0.35),
+      transparent
+    );
+
+    transform: rotate(25deg);
+
+    animation: premiumLogoShine 5s ease-in-out infinite;
+
+    pointer-events: none;
+
+    z-index: 4;
+  }
+
+  &:hover {
+    transform: translateY(-4px) scale(1.06);
+
+    border-color: rgba(245, 216, 132, 0.9);
+
+    box-shadow:
+      0 0 0 7px rgba(225, 191, 106, 0.035),
+      0 0 65px rgba(220, 174, 69, 0.25),
+      inset 0 0 35px rgba(220, 174, 69, 0.09);
+
+    .business-card__logo-image {
+      transform: scale(1.08);
+
+      filter:
+        drop-shadow(0 0 10px rgba(245, 216, 132, 0.45))
+        drop-shadow(0 0 28px rgba(220, 174, 69, 0.25));
+    }
+  }
+}
+
+/* SVG container */
+
+.business-card__logo-frame {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100px;
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+}
+
+/* SVG itself */
+
+.business-card__logo-image {
+  display: block;
+
+  width: 94px;
+  height: 94px;
+
+  max-width: none;
+  max-height: none;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0 0 7px rgba(239, 212, 135, 0.25))
+    drop-shadow(0 0 18px rgba(220, 174, 69, 0.14));
+
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.4s ease;
+}
+
+/* =====================================================
+   MOBILE LOGO
+===================================================== */
+
+@media (max-width: 480px) {
+  .business-card__logo {
+    width: 88px;
+    height: 88px;
+
+    &::before {
+      inset: 6px;
+    }
+  }
+
+  .business-card__logo-frame {
+    width: 76px;
+    height: 76px;
+  }
+
+  .business-card__logo-image {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+@media (max-width: 360px) {
+  .business-card__logo {
+    width: 76px;
+    height: 76px;
+  }
+
+  .business-card__logo-frame {
+    width: 66px;
+    height: 66px;
+  }
+
+  .business-card__logo-image {
+    width: 62px;
+    height: 62px;
+  }
+}
+
+/* =====================================================
+   LOGO SHINE
+===================================================== */
+
+@keyframes premiumLogoShine {
+  0%,
+  55% {
+    transform: translateX(-160%) rotate(25deg);
+  }
+
+  75%,
+  100% {
+    transform: translateX(360%) rotate(25deg);
+  }
+}
