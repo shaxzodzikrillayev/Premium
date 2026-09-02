@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <defs>
+    <!-- Золотой градиент для имитации премиальной краски -->
+    <linearGradient id="goldGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9C6B2B" />
+      <stop offset="30%" stop-color="#D4AF37" />
+      <stop offset="70%" stop-color="#F3E5AB" />
+      <stop offset="100%" stop-color="#8A5A19" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Глубокий черный фон со слегка скругленными краями для эстетики логотипа -->
+  <rect width="500" height="500" fill="#0A0A0A" rx="80" />
+  
+  <!-- Строгая и минималистичная буква M -->
+  <path d="M 150 330 L 150 170 L 250 270 L 350 170 L 350 330" 
+        fill="none" 
+        stroke="url(#goldGradient)" 
+        stroke-width="22" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" />
+</svg>
