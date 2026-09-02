@@ -3,9 +3,6 @@ import "./BusinessCard.scss";
 
 import { ArrowUpRight, Send } from "lucide-react";
 import ContactsModal from "./ContactsModal";
-import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
-import { useLanguage } from "../../language/useLanguage";
-import { t } from "../../i18n";
 
 const InstagramIcon = () => (
   <svg
@@ -33,7 +30,7 @@ const InstagramIcon = () => (
 );
 
 type Contact = {
-  titleKey: string;
+  title: string;
   value: string;
   href: string;
   icon: ReactNode;
@@ -43,7 +40,7 @@ type Contact = {
 
 const contacts: Contact[] = [
   {
-    titleKey: "instagram",
+    title: "INSTAGRAM",
     value: "@magnatpremium.uz",
     href: "https://www.instagram.com/magnatpremium.uz/",
     external: true,
@@ -51,7 +48,7 @@ const contacts: Contact[] = [
     icon: <InstagramIcon />,
   },
   {
-    titleKey: "ourTelegram",
+    title: "НАШ TELEGRAM",
     value: "Magnat&premium",
     href: "https://t.me/magnnatpremium",
     external: true,
@@ -61,7 +58,6 @@ const contacts: Contact[] = [
 
 const BusinessCard = () => {
   const [contactsOpen, setContactsOpen] = useState(false);
-  const { lang } = useLanguage();
 
   const openContacts = () => {
     setContactsOpen(true);
@@ -104,10 +100,7 @@ const BusinessCard = () => {
             </div>
           </div>
 
-          <div className="business-card__top-right">
-            <div className="business-card__mini">EST. 2014</div>
-            <LanguageSwitcher />
-          </div>
+          <div className="business-card__mini">EST. 2014</div>
         </div>
 
         {/* ==============================================
@@ -115,14 +108,14 @@ const BusinessCard = () => {
         =============================================== */}
 
         <section className="business-card__hero">
-          <span className="business-card__eyebrow">{t("eyebrow", lang)}</span>
+          <span className="business-card__eyebrow">THE ART OF STYLE</span>
 
           <h1 className="business-card__brand">
             MAGNAT
             <span>PREMIUM</span>
           </h1>
 
-          <p className="business-card__subtitle">{t("subtitle", lang)}</p>
+          <p className="business-card__subtitle">PREMIUM COLLECTION</p>
         </section>
 
         {/* ==============================================
@@ -140,17 +133,17 @@ const BusinessCard = () => {
         <div className="business-card__contacts">
           {contacts.map((item) => (
             <a
-              key={item.titleKey}
+              key={item.title}
               href={item.href}
               className={`contact ${item.featured ? "contact--featured" : ""}`}
               target={item.external ? "_blank" : undefined}
               rel={item.external ? "noopener noreferrer" : undefined}
-              aria-label={`${t(item.titleKey, lang)}: ${item.value}`}
+              aria-label={`${item.title}: ${item.value}`}
             >
               <div className="contact__icon">{item.icon}</div>
 
               <div className="contact__info">
-                <small>{t(item.titleKey, lang)}</small>
+                <small>{item.title}</small>
                 <strong>{item.value}</strong>
               </div>
 
@@ -170,7 +163,7 @@ const BusinessCard = () => {
           className="business-card__contacts-button"
           onClick={openContacts}
         >
-          {t("contacts", lang)}
+          CONTACTS
         </button>
 
         {/* ==============================================

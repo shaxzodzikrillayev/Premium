@@ -1,14 +1,10 @@
 import "./Preloader.scss";
-import { useLanguage } from "../../language/useLanguage";
-import { t } from "../../i18n";
 
 interface Props {
   hidden: boolean;
 }
 
 const Preloader = ({ hidden }: Props) => {
-  const { lang } = useLanguage();
-
   return (
     <div className={`preloader ${hidden ? "preloader--hidden" : ""}`}>
       {/* Светящийся фон */}
@@ -21,7 +17,7 @@ const Preloader = ({ hidden }: Props) => {
       <div className="preloader__brand">MAGNAT</div>
 
       {/* Подзаголовок */}
-      <div className="preloader__subtitle">{t("subtitle", lang)}</div>
+      <div className="preloader__subtitle">PREMIUM COLLECTION</div>
 
       {/* Линия загрузки */}
       <div className="preloader__line">

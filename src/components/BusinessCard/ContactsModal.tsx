@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import "./ContactsModal.scss";
 
 import { X, Phone, ArrowUpRight } from "lucide-react";
-import { useLanguage } from "../../language/useLanguage";
-import { t } from "../../i18n";
 
 type Props = {
   onClose: () => void;
@@ -12,7 +10,6 @@ type Props = {
 const ContactsModal = ({ onClose }: Props) => {
   const [closing, setClosing] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const { lang } = useLanguage();
 
   useEffect(() => {
     return () => {
@@ -37,15 +34,11 @@ const ContactsModal = ({ onClose }: Props) => {
       <div className="contacts-modal__overlay" onClick={closeModal} />
 
       <div className="contacts-modal__card">
-        <button
-          className="contacts-modal__close"
-          onClick={closeModal}
-          aria-label={t("close", lang)}
-        >
+        <button className="contacts-modal__close" onClick={closeModal}>
           <X size={20} />
         </button>
 
-        <span className="contacts-modal__label">{t("contacts", lang)}</span>
+        <span className="contacts-modal__label">CONTACTS</span>
 
         <h2>
           MAGNAT
@@ -56,7 +49,7 @@ const ContactsModal = ({ onClose }: Props) => {
           <a href="tel:+998935932244">
             <Phone size={20} />
             <div>
-              <small>{t("phone", lang)}</small>
+              <small>ТЕЛЕФОН</small>
               <strong>+998 93 593 22 44</strong>
             </div>
           </a>
@@ -64,7 +57,7 @@ const ContactsModal = ({ onClose }: Props) => {
           <a href="tel:+998777010308">
             <Phone size={20} />
             <div>
-              <small>{t("phone", lang)}</small>
+              <small>ТЕЛЕФОН</small>
               <strong>+998 77 701 03 08</strong>
             </div>
           </a>
@@ -72,7 +65,7 @@ const ContactsModal = ({ onClose }: Props) => {
           <a href="tel:+998773220888">
             <Phone size={20} />
             <div>
-              <small>{t("phone", lang)}</small>
+              <small>ТЕЛЕФОН</small>
               <strong>+998 77 322 08 88</strong>
             </div>
           </a>
@@ -84,7 +77,7 @@ const ContactsModal = ({ onClose }: Props) => {
           >
             <ArrowUpRight size={20} />
             <div>
-              <small>{t("telegram", lang)}</small>
+              <small>TELEGRAM</small>
               <strong>@Alimov010</strong>
             </div>
           </a>
@@ -96,7 +89,7 @@ const ContactsModal = ({ onClose }: Props) => {
           >
             <ArrowUpRight size={20} />
             <div>
-              <small>{t("telegram", lang)}</small>
+              <small>TELEGRAM</small>
               <strong>@akbarovvx</strong>
             </div>
           </a>
@@ -108,7 +101,7 @@ const ContactsModal = ({ onClose }: Props) => {
           >
             <ArrowUpRight size={20} />
             <div>
-              <small>{t("telegram", lang)}</small>
+              <small>TELEGRAM</small>
               <strong>@Alimov4422</strong>
             </div>
           </a>
